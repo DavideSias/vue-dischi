@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container p-5" v-if="arrSongs">
-      <div class="row row-cols-5 g-4">
+      <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-4">
         <card-content
           v-for="song in arrSongs"
           :key="song.title"
