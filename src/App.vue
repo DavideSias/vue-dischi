@@ -1,7 +1,7 @@
 <template>
   <div>
-    <header-page />
-    <main-page />
+    <header-page @change="onFiltersChange"/>
+    <main-page :selectedValue="selectedValue"/>
   </div>
 </template>
 
@@ -14,7 +14,16 @@ export default {
     HeaderPage,
     MainPage,
   },
-
+  data() {
+    return {
+      selectedValue: 'none',
+    };
+  },
+  methods: {
+    onFiltersChange(newSelectedValue) {
+      this.selectedValue = newSelectedValue;
+    },
+  },
 };
 </script>
 

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container p-5" v-if="arrSongs">
+    <div class="container p-5" v-if="filteredSongs">
       <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-4">
         <card-content
-          v-for="song in arrSongs"
+          v-for="song in filteredSongs"
           :key="song.title"
           :img-url="song.poster"
           :title="song.title"
@@ -36,6 +36,14 @@ export default {
       .then((axiosResponse) => {
         this.arrSongs = axiosResponse.data.response;
       });
+  },
+  computed: {
+    filteredSongs() {
+      return this.arrSongs.filter((newValue) => newValue.genre === this.selectedValue);
+    },
+  },
+  props: {
+    selectedValue: String,
   },
 };
 </script>

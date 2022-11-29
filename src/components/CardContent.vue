@@ -19,6 +19,9 @@ export default {
     title: String,
     author: String,
     year: String,
+
+    // alternativa in cui dichiariamo la props come oggetto intero
+    // songInfo: Object,
   },
 };
 </script>
