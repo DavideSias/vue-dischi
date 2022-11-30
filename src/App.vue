@@ -1,7 +1,7 @@
 <template>
   <div>
-    <header-page @change="onFiltersChange"/>
-    <main-page :selectedValue="selectedValue"/>
+    <header-page :genres-list="genresList" @changedGenre="genreChange"/>
+    <main-page @genresReady="getGenresList" :genre-filter="genreFilter"/>
   </div>
 </template>
 
@@ -16,12 +16,16 @@ export default {
   },
   data() {
     return {
-      selectedValue: 'none',
+      genresList: [],
+      genreFilter: 'all',
     };
   },
   methods: {
-    onFiltersChange(newSelectedValue) {
-      this.selectedValue = newSelectedValue;
+    getGenresList(genresList) {
+      this.genresList = genresList;
+    },
+    genreChange(genreFilter) {
+      this.genreFilter = genreFilter;
     },
   },
 };

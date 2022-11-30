@@ -1,22 +1,37 @@
 <template>
   <div class="navbar p-2">
     <img src="@/img/logo-small.svg" alt="logo">
-    <select-genre @change="onChange"/>
+    <label for="select-genres">
+      <select
+        name="genre"
+        id="select-genres"
+        v-model="genreFilter"
+        @change="genreChange"
+      >
+        <option value="all">Select Genre</option>
+        <option v-for="genre in genresList" :key="genre" :value="genre">
+          {{ genre }}
+        </option>
+      </select>
+    </label>
   </div>
 </template>
 
 <script>
-import SelectGenre from './SelectGenre.vue';
 
 export default {
   name: 'HeaderPage',
-  components: { SelectGenre },
-  data: () => ({
-    value: 'none',
-  }),
+  props: {
+    genresList: Array,
+  },
+  data() {
+    return {
+      genreFilter: 'all',
+    };
+  },
   methods: {
-    onChange(selectedValue) {
-      this.$emit('change', selectedValue);
+    genreChange() {
+      this.$emit('changedGenre', this.genreFilter);
     },
   },
 };
